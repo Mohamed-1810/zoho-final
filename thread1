@@ -1,0 +1,41 @@
+package demo;
+
+
+import java.util.*;
+public class Main implements Runnable {
+	
+	
+	Thread th;
+	User user;
+	
+	public void run()
+	{
+//		System.out.print();
+	}
+	Main()
+	{
+		th=new Thread();
+	}
+	synchronized void addUser(User u) throws InterruptedException
+	{
+		this.th.sleep(10000);
+	}
+	
+	public static void main(String args[])
+	{
+//		User user1=new User("Tharik",18,"Chennai");
+		
+		Scanner sc=new Scanner(System.in);
+		
+		Main admin=new Main();
+		System.out.println(admin.th.getState());
+		
+//		User user1=new User("Tharik",18,"Chennai");
+		for(int i=0;i<5;i++)
+		{
+			String name=sc.next();
+			
+		}
+		
+	}
+}

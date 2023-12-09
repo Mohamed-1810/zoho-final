@@ -1,0 +1,81 @@
+package demo;
+
+
+import java.util.*;
+
+public class User implements Runnable{
+	
+	
+	String name;
+	int age;
+	String location;
+	int id;
+	public void run()
+	{
+		try {
+
+					this.addUser();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	User(String name,int age,String location)
+	{
+		this.name=name;
+		this.age=age;
+		this.location=location;
+	}
+	
+	
+	synchronized void addUser() throws InterruptedException
+	{
+		this.id=userid++;
+		users.add(this);
+//		Thread.currentThread().wait();
+		System.out.println(this.name+" "+Thread.currentThread().getState());
+		Thread.currentThread().sleep(3000);
+		System.out.println(this.name);
+//		Thread.currentThread().join();
+
+		
+		
+	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", age=" + age + ", location=" + location + ", id=" + id + "]";
+	}
+
+
+	static List<User> users=new ArrayList<>();
+	static int userid=1;
+	public static void main(String args[]) throws InterruptedException
+	{
+		User user1=new User("Tharik",18,"Chennai");
+		User user2=new User("Mohamed",20,"Chennai");
+		
+		
+		Thread th1=new Thread(user1);
+		Thread th2=new Thread(user2);
+		
+		th2.start();
+		th1.start();
+//		th2.sleep(3000);
+//		System.out.println(th2.getState());
+//		System.out.println(th1.getState());
+		
+		
+//		for(User u:users)
+//		{
+//			System.out.println(u.toString());
+//		}
+	
+		
+		
+		
+	}
+}
